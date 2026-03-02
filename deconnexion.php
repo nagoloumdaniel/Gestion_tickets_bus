@@ -1,9 +1,3 @@
 <?php
-    session_start ();
+require __DIR__ . '/app/actions/logout.php';
 
-    session_unset ();
-
-    session_destroy ();
-
-    header ('location: index.php');
-?>
