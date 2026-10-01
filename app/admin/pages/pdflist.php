@@ -47,7 +47,11 @@ if (isset($_SESSION['genererlist'])) {
     }
     $pdf->Cell(0, 10, 'Travel.com', 0, 1, 'C');
 
-    $fact = 'C:\Users\Esco_bAr\Downloads\FACTURE TRAVEL\Liste des passagers n°' . $idTrajet . '.pdf';
+    $facturesDir = __DIR__ . '/../../../factures';
+    if (!is_dir($facturesDir)) {
+        mkdir($facturesDir, 0775, true);
+    }
+    $fact = $facturesDir . '/Liste_passagers_' . $idTrajet . '.pdf';
     $pdf->Output('F', $fact);
 
     if (file_exists($fact)) {

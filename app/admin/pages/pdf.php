@@ -72,7 +72,11 @@ if (isset($_SESSION['genererfact'])) {
         $pdf->Cell(0, 10, 'Travel.com', 0, 1, 'C');
 
 
-        $fact = 'C:\Users\Esco_bAr\Downloads\FACTURE TRAVEL\Facture(admin) n° ' . $id_paiement . '.pdf';
+        $facturesDir = __DIR__ . '/../../../factures';
+        if (!is_dir($facturesDir)) {
+            mkdir($facturesDir, 0775, true);
+        }
+        $fact = $facturesDir . '/Facture_admin_' . $id_paiement . '.pdf';
         $pdf->Output('F', $fact);
 
         if (file_exists($fact)) {
